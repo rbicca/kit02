@@ -13,9 +13,18 @@
 </svelte:head> -->
 
 <h1>Produto</h1>
+<img src={product?.thumbnail} alt={product?.title}>
 <h2>{product.title}</h2>
 <p>{product?.description}</p>
-<img src={product?.thumbnail} alt={product?.title}>
+
+{#await data.nested.comments}
+    <p>Loading</p>
+{:then data}
+    {#each data.comments as comment}
+        <p>{comment.body}</p>
+    {/each}
+{/await}
+
 
 <style>
     img {

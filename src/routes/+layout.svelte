@@ -11,7 +11,7 @@
 
 <svelte:head>
     <title>Kit02 - {titulo}</title>
-    {#if $page.data.product.description}
+    {#if $page.data.product?.description}
         <meta name="description" content={$page.data.product.description}/>
     {/if}
 </svelte:head>

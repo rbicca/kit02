@@ -1,9 +1,19 @@
 import { error, json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 
-export const GET: RequestHandler = async () => {
+export const GET: RequestHandler = async ({fetch}) => {
 
-    const products = await (await import('$lib/dummy-products.json')).default;
+    //const products = await (await import('$lib/dummy-products.json')).default;
+
+    const response = await fetch('https://dummyjson.com/products');
+
+    if(response.ok){
+        const respJSON = await response.json();
+
+        return json(respJSON, { status: 200 });
+    }
+    throw error(response.status, response.statusText);
+
 
     // return new Response(JSON.stringify(products), {
     //     status: 200
@@ -15,9 +25,9 @@ export const GET: RequestHandler = async () => {
 
     // throw error(401, 'Nop');
 
-    return json(products, {
-        status: 200
-    });
+    // return json(products, {
+    //     status: 200
+    // });
 };
 
 export const POST: RequestHandler = async ({request}) => {

@@ -13,7 +13,7 @@
             <li>
                 <img src={product.thumbnail} alt={product.title}>
                 <h3><a href="/product/{product.id}">{product.title}</a></h3>
-                <p>{product.description}</p>
+                <p>{product?.description}</p>
             </li>
         {/each}
     </ul>
