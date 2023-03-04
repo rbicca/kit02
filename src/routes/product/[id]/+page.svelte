@@ -20,6 +20,9 @@
 {#await data.nested.comments}
     <p>Loading</p>
 {:then data}
+    <hr />
+    <p>Comentários</p>
+    <hr />
     {#each data.comments as comment}
         <p>{comment.body}</p>
     {/each}
