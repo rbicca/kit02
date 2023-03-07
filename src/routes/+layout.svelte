@@ -5,7 +5,6 @@
 
     export let data: LayoutData;
 
-    console.log($page);
     $: titulo =  $page.data.product? $page.data.product.title : '';
 </script>
 
@@ -16,11 +15,14 @@
     {/if}
 </svelte:head>
 
+<p>Em token temos {JSON.stringify(data)}</p>
+
 {#if  data.user}
     <p>Logado como {data.user.name}</p>
 {/if}
 <nav>
     <a href="/">Início</a>
     <a href="/products">Produtos</a>
+    <a href="/login">Login</a>
 </nav>
 <slot />
