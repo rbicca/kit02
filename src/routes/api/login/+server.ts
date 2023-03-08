@@ -15,6 +15,6 @@ export const POST: RequestHandler = async ({request, cookies}) => {
         path: '/'
     });
 
-    return json({name: data.username, id: 1});
+    return json({ name: data.username, id: 1 });
 
 }

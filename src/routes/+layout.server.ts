@@ -6,7 +6,7 @@ export const load: LayoutServerLoad = ({cookies}) => {
     //nesse momento obteríamos o usuário do token
 
     const user = { name: 'kuka', id: 1 };
-    console.log('em token temos ', token);
+    //console.log('em token temos ', token);
     return { 
         user: token ? user : null
     } ;
