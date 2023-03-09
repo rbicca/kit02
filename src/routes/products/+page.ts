@@ -5,7 +5,14 @@ import type { PageLoad } from "./$types";
 //Primeiro roda server => client => page
 //Temos que repassar o parametro data manualmente
 
-export const load: PageLoad = ({data}) => {
+export const load: PageLoad = ({data, fetch, depends}) => {
+
+    //2 chamadas canalhas somente para testar
+    fetch('https://dummyjson.com/products');
+    fetch('https://dummyjson.com/users');
+
+    depends('app:products');
+    
     return {
         products: data.products,
         title: 'Catálogo de produtos'

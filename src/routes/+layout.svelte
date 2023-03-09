@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { LayoutData } from "./$types";
     import { page } from "$app/stores";
+	import { invalidateAll } from "$app/navigation";
 
 
     export let data: LayoutData;
@@ -29,7 +30,12 @@
 </nav>
 
 {#if data.user}
-    <button on:click={() => fetch('/api/logout', { method: 'POST' })} >Logout</button>
+    <button on:click={ async () => {
+            const res = await fetch('/api/logout', { method: 'POST' });
+            if (res.ok) invalidateAll(); 
+
+        }}
+    >Logout</button>
 {/if}
 
 <slot />

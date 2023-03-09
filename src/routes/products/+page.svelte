@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidate } from '$app/navigation';
     import type { PageData } from './$types';
     export let data: PageData;
 
@@ -7,6 +8,19 @@
 
 
 <h2>{data.title}</h2>
+<button on:click={()=>{
+    invalidate('https://dummyjson.com/products');
+
+    //ou
+    //aponta para a função load que deseja invalidar
+    //invalidate('app:products');
+
+    //ou, invalida pela url
+    // invalidate((url) => {
+    //     return url.hostname === 'dummyjson.com';
+    // });
+
+}} >Re-Run</button>
 {#if products && products.length > 0}
     <ul>
         {#each products as product}
