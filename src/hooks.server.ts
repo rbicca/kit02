@@ -1,4 +1,4 @@
-import type { Handle } from "@sveltejs/kit";
+import type { Handle, HandleFetch } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 
 //Podemos usar sequence para separar os handles, e trata-los em sequencia
@@ -25,4 +25,19 @@ export const handle:Handle = async ({event, resolve}) => {
     //response.headers.set('x-custom-header', 'value');
     
     return response;
+};
+
+
+export const handleFetch: HandleFetch = ({request, event, fetch}) => {
+    //Intercepta as fetch request
+    //Bom local para passar cookies
+   //Pode trocar a url tambem
+   //request = new Request() blah 
+    if(request.url.startsWith('https://dummyjson.com/')){
+        const cookie = event.request.headers.get('cookie');
+        if(cookie){
+            request.headers.set('cookie',cookie);
+        }
+    }
+    return fetch(request);
 };
